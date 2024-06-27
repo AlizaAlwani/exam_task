@@ -1,23 +1,49 @@
+'use client'
 import { Createform } from '@/components/Createform';
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { FaRegTrashAlt } from "react-icons/fa";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 
 const Home = () => {
+
+  const Loreminfo = [
+    {
+      id: '0',
+      name: 'Hello'
+    },
+    {
+      id: '1',
+      name: 'Aliza'
+    },
+    {
+      id: '2',
+      name: 'Alwani'
+    },
+  ]
+
   return (
     <div className='h-screen bg-yellow-200 border border-black rounded-md'>
       <div className=' flex flex-row gap-x-24 items-center justify-center'>
-        <div className='border border-black rounded-md w-[350px] h-[200px] bg-green-300 mt-20 text-center flex items-center justify-center flex-col gap-y-2 '>
+        <div className='border border-black rounded-md w-[350px] h-[200px] bg-green-300 mt-12 text-center flex items-center justify-center flex-col gap-y-2 '>
           <div className='font-semibold text-xl'>lorem ipsum</div>
           <div className='font-semibold text-8xl font-mono'>03</div>
         </div>
-        <div className='border border-black rounded-md w-[350px] h-[200px] bg-pink-300 mt-20 text-center flex items-center justify-center flex-col gap-y-2'>
+        <div className='border border-black rounded-md w-[350px] h-[200px] bg-pink-300 mt-12 text-center flex items-center justify-center flex-col gap-y-2'>
           <div className='font-semibold text-lg'>lorem ipsum</div>
           <div className='font-semibold text-8xl font-mono'>11</div>
         </div>
-        <div className='border border-black rounded-md w-[350px] h-[200px] bg-red-300 mt-20 text-center flex items-center justify-center flex-col gap-y-2'>
+        <div className='border border-black rounded-md w-[350px] h-[200px] bg-red-300 mt-12 text-center flex items-center justify-center flex-col gap-y-2'>
           <div className='font-semibold text-lg'>lorem ipsum</div>
           <div className='font-semibold text-8xl font-mono'>52</div>
         </div>
@@ -33,38 +59,36 @@ const Home = () => {
         <Createform />
       </div>
 
-      <div className='flex items-center justify-center gap-y-6 mt-10 flex-col'>
-        <div className='border border-black bg-white w-[1240px] h-[100px] rounded-md'>
-          <div className='ml-10 pt-4'>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</div>
-          <div className='flex flex-row pt-2 '>
-            <Button asChild className='bg-red-800 flex items-center justify-center text-white font-semibold border border-black rounded-2xl w-[200px] ml-10'>
-              <Link href={'/'}>Click me</Link>
-            </Button>
-            <div className='ml-auto mr-12 text-xl '><Link href={'/delete'}><FaRegTrashAlt/></Link></div>
-          </div>
-        </div>
+      <div className='flex flex-col bg-yellow-200'>
+        {
+          Loreminfo.map((lorem) => {
+            return (
 
-        <div className='border border-black bg-white w-[1240px] h-[100px] rounded-md'>
-          <div className='ml-10 pt-4'>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</div>
-          <div className='flex flex-row pt-2'>
-            <Button asChild className='bg-red-800 flex items-center justify-center text-white font-semibold border border-black rounded-2xl w-[200px] ml-10'>
-              <Link href={'/'}>Click me</Link>
-            </Button>
-            <div className='ml-auto mr-12 text-xl '><Link href={'/'}><FaRegTrashAlt/></Link></div>
-          </div>
-        </div>
-        
-        <div className='border border-black bg-white w-[1240px] h-[100px] rounded-md'>
-          <div className='ml-10 pt-4'>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</div>
-          <div className='flex flex-row pt-2 '>
-            <Button asChild className='bg-red-800 flex items-center justify-center font-semibold text-white border border-black rounded-2xl w-[200px] ml-10'>
-              <Link href={'/'}>Click me</Link>
-            </Button>
-            <div className='ml-auto mr-12 text-xl '>
-              <Link href={'/'}><FaRegTrashAlt/></Link></div>
-          </div>
-        </div>
+              <Card className="items-center justify-center w-[1220px] h-[120px] ml-auto mr-60 mt-8 rounded-md border border-black">
+                <CardHeader>
+                  <CardDescription className='text-black text-base font-mono '>{lorem.name}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className='flex items-center justify-between'>
+                    <Button variant={'destructive'} className='w-[200px] rounded-md'>Click here</Button>
+                    <Button variant={'ghost'} className='text-3xl' asChild>
+                      <Link href={'/'}><FaRegTrashAlt /></Link></Button>
+                  </div>
+                </CardContent>
+
+              </Card>
+            )
+
+          })
+
+    }
+    
+
+
       </div>
+
+
+
     </div>
   )
 }

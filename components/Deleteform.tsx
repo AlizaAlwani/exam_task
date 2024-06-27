@@ -15,7 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Examprac1 } from '@/actions/exam'
+import { Examprac1 } from '@/actions/deleteLorem'
+
 
 
 

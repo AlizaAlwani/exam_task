@@ -14,7 +14,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Examprac } from '@/actions/exam'
+import { Examprac } from '@/actions/createLorem'
+
 
 export const formSchema = z.object({
     name: z.string().min(2, {

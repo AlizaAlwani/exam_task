@@ -18,15 +18,5 @@ export const Examprac = async (values: z.infer<typeof formSchema>) => {
     console.log(Examprac);
 };
 
-export const Examprac1 = async (values: z.infer<typeof deleteSchema>) => {
-    console.log(values);
 
-    const DeleteStudent = await prisma.lorem.deleteMany({
-        where: {
-            id: values.id,
-        },
-    });
-
-    console.log(Examprac1);
-};
 
