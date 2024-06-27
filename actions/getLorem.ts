@@ -1,8 +1,8 @@
-// "use server"
-// import prisma from "@/lib/db"
+"use server";
 
-// export const getLorem = async () => ({
+import prisma from "@/lib/db";
 
-//     const getStudent = await prisma.lorem.findMany()
+export const getLorem = async () => {
 
-// })
+    return await prisma.lorem.findMany();
+}

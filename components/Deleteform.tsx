@@ -36,7 +36,7 @@ export const Deleteform = () => {
         // Do something with the form values.
         // âœ… This will be type-safe and validated.
         console.log(values)
-        Examprac1(values)
+       
         
       }
   return (

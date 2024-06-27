@@ -3,7 +3,7 @@ import { Createform } from '@/components/Createform';
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
-import React, { useState } from 'react'
+
 import { FaRegTrashAlt } from "react-icons/fa";
 import {
   Card,
@@ -13,24 +13,42 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useCallback, useEffect, useState } from 'react';
+import { getLorem } from '@/actions/getLorem';
+import { Examprac1 } from '@/actions/deleteLorem';
 
 
 const Home = () => {
 
-  const Loreminfo = [
-    {
-      id: '0',
-      name: 'Hello'
-    },
-    {
-      id: '1',
-      name: 'Aliza'
-    },
-    {
-      id: '2',
-      name: 'Alwani'
-    },
-  ]
+  const [data, setData] = useState<any>()
+
+  useEffect(() => {
+    getLorem()
+
+      .then((data: any) => {
+        setData(data)
+      })
+  }, [setData])
+
+  const handleSubmit = useCallback((id:string) => {
+    Examprac1(id)
+  
+  }, []);
+
+  // const Loreminfo = [
+  //   {
+  //     id: '0',
+  //     name: 'Hello'
+  //   },
+  //   {
+  //     id: '1',
+  //     name: 'Aliza'
+  //   },
+  //   {
+  //     id: '2',
+  //     name: 'Alwani'
+  //   },
+  // ]
 
   return (
     <div className='h-screen bg-yellow-200 border border-black rounded-md'>
@@ -61,18 +79,18 @@ const Home = () => {
 
       <div className='flex flex-col bg-yellow-200'>
         {
-          Loreminfo.map((lorem) => {
+          data?.map((lorem:any, index:number) => {
             return (
 
-              <Card className="items-center justify-center w-[1220px] h-[120px] ml-auto mr-60 mt-8 rounded-md border border-black">
+              <Card key={index} className="items-center justify-center w-[1220px] h-[120px] ml-auto mr-60 mt-8 rounded-md border border-black">
                 <CardHeader>
                   <CardDescription className='text-black text-base font-mono '>{lorem.name}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className='flex items-center justify-between'>
                     <Button variant={'destructive'} className='w-[200px] rounded-md'>Click here</Button>
-                    <Button variant={'ghost'} className='text-3xl' asChild>
-                      <Link href={'/'}><FaRegTrashAlt /></Link></Button>
+                    <Button variant={'ghost'} className='text-3xl' onClick={()=> handleSubmit(lorem.id)}>
+                      <FaRegTrashAlt /></Button>
                   </div>
                 </CardContent>
 
@@ -81,8 +99,8 @@ const Home = () => {
 
           })
 
-    }
-    
+        }
+
 
 
       </div>
